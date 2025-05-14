@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="logo.png" href="logo.png">
@@ -13,17 +13,20 @@
       padding: 20px;
       background-color: #f5f5f5;
     }
+
     h1 {
       text-align: center;
       margin-bottom: 10px;
       font-size: 32px;
       color: #333;
     }
+
     .logo {
       display: block;
       margin: 0 auto 20px;
       max-width: 220px;
     }
+
     .tabs {
       display: flex;
       gap: 10px;
@@ -31,6 +34,7 @@
       flex-wrap: wrap;
       justify-content: center;
     }
+
     .tab {
       padding: 10px 15px;
       background: rgb(37, 150, 190);
@@ -39,18 +43,22 @@
       font-size: 14px;
       color: #fff;
     }
+
     .tab.active {
       background: rgb(37, 150, 190);
       color: #fff;
     }
+
     .grid {
       display: none;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
+      gap: 30px;
     }
+
     .grid.active {
       display: grid;
     }
+
     .card {
       background: #fff;
       padding: 15px;
@@ -58,35 +66,42 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
       text-align: center;
     }
+
     .card img {
       width: 100%;
       border-radius: 50%;
       height: 150px;
       object-fit: cover;
     }
+
     .card h4 {
       margin: 10px 0 5px;
       font-size: 16px;
     }
+
     .card p {
       margin: 0;
       color: #888;
       font-size: 14px;
     }
+
     .ingredients {
       font-size: 12px;
       margin: 5px 0;
       color: #555;
     }
+
     .price {
       margin: 10px 0;
       font-weight: bold;
     }
+
     .price del {
       color: #bbb;
       font-weight: normal;
       margin-right: 5px;
     }
+
     .add-btn {
       padding: 8px 12px;
       background: #ff5a5f;
@@ -97,11 +112,13 @@
       font-size: 14px;
       width: 100%;
     }
+
     model-viewer {
       width: 100%;
       height: 200px;
-      margin-top: 10px;
+      margin: 10px 0 20px;
     }
+
     @media (max-width: 600px) {
       h1 {
         font-size: 24px;
@@ -132,79 +149,79 @@
     <div class="tab" data-target="thai">Thai Cuisine</div>
   </div>
 
+  <!-- Burgers -->
   <div class="grid active" id="burger">
     <div class="card">
-      <img src="https://via.placeholder.com/150" alt="Pasta" />
+      <img src="https://via.placeholder.com/150" alt="Zinger Burger" />
       <h4>Zinger Burger</h4>
-      <p class="ingredients">Ingredients: Bread, Patti, Veggies </p>
-      <model-viewer src="KFC, zinger burger photogrammetry.glb" alt="Spaghetti AR" auto-rotate camera-controls ar></model-viewer>
+      <p class="ingredients">Ingredients: Bread, Patti, Veggies</p>
+      <model-viewer src="KFC, zinger burger photogrammetry.glb" alt="Zinger Burger AR" auto-rotate camera-controls ar></model-viewer>
       <div class="price">$5.00</div>
-      </div>
-  </div>
-
+    </div>
     <div class="card">
-      <img src="https://via.placeholder.com/150" alt="Pasta" />
+      <img src="https://via.placeholder.com/150" alt="Classic Burger" />
       <h4>Classic Burger</h4>
-      <p class="ingredients">Ingredients: Bread, Patti, Veggies </p>
-      <model-viewer src="KFC, zinger burger photogrammetry.glb" alt="Spaghetti AR" auto-rotate camera-controls ar></model-viewer>
+      <p class="ingredients">Ingredients: Bread, Patti, Veggies</p>
+      <model-viewer src="KFC, zinger burger photogrammetry.glb" alt="Classic Burger AR" auto-rotate camera-controls ar></model-viewer>
       <div class="price">$5.00</div>
-  </div>
-  
+    </div>
     <div class="card">
-      <img src="https://via.placeholder.com/150" alt="Pasta" />
+      <img src="https://via.placeholder.com/150" alt="Classic Cheese Burger" />
       <h4>Classic Cheese Burger</h4>
-      <p class="ingredients">Ingredients: Bread, Cheese, Patti, Veggies </p>
-      <model-viewer src="uploads_files_2465920_burger_merged.glb" alt="Spaghetti AR" auto-rotate camera-controls ar></model-viewer>
+      <p class="ingredients">Ingredients: Bread, Cheese, Patti, Veggies</p>
+      <model-viewer src="uploads_files_2465920_burger_merged.glb" alt="Cheese Burger AR" auto-rotate camera-controls ar></model-viewer>
       <div class="price">$13.00</div>
     </div>
   </div>
-  
+
+  <!-- Pizza -->
   <div class="grid" id="pizza">
     <div class="card">
-      <img src="https://via.placeholder.com/150" alt="Nachos" />
+      <img src="https://via.placeholder.com/150" alt="Peperoni Pizza" />
       <h4>Peperoni Pizza</h4>
       <p class="ingredients">Ingredients: Peperoni, Cheese, Jalapeños</p>
-      <model-viewer src="Delicious Peperoni Pizza.glb" alt="Nachos AR" auto-rotate camera-controls ar></model-viewer>
+      <model-viewer src="Delicious Peperoni Pizza.glb" alt="Peperoni Pizza AR" auto-rotate camera-controls ar></model-viewer>
       <div class="price">$11.00</div>
     </div>
-
     <div class="card">
-      <img src="https://via.placeholder.com/150" alt="Nachos" />
+      <img src="https://via.placeholder.com/150" alt="Cheese Pizza" />
       <h4>Cheese Pizza</h4>
-      <p class="ingredients">Ingredients: Peperoni, Cheese, Jalapeños</p>
-      <model-viewer src="Delicious Peperoni Pizza.glb" alt="Nachos AR" auto-rotate camera-controls ar></model-viewer>
+      <p class="ingredients">Ingredients: Cheese, Jalapeños</p>
+      <model-viewer src="Delicious Peperoni Pizza.glb" alt="Cheese Pizza AR" auto-rotate camera-controls ar></model-viewer>
       <div class="price">$11.00</div>
     </div>
   </div>
 
+  <!-- Japanese -->
   <div class="grid" id="japanese">
     <div class="card">
-      <img src="https://via.placeholder.com/150" alt="Ramen" />
+      <img src="https://via.placeholder.com/150" alt="Box Combo" />
       <h4>Box Combo</h4>
       <p class="ingredients">Ingredients: Noodles, Chicken, Egg, Broth, Rice</p>
-      <model-viewer src="Box Combo w_ extra sauce.glb" alt="Ramen AR" auto-rotate camera-controls ar></model-viewer>
+      <model-viewer src="Box Combo w_ extra sauce.glb" alt="Box Combo AR" auto-rotate camera-controls ar></model-viewer>
       <div class="price">$15.00</div>
     </div>
   </div>
 
+  <!-- Bakery -->
   <div class="grid" id="bakery">
     <div class="card">
-      <img src="https://via.placeholder.com/150" alt="Falafel" />
+      <img src="https://via.placeholder.com/150" alt="Special Cake" />
       <h4>Special Cake</h4>
-      <p class="ingredients">Ingredients: Cheese, cherry, cream</p>
-      <model-viewer src="William’s Birthday Cake.glb" alt="Falafel AR" auto-rotate camera-controls ar></model-viewer>
+      <p class="ingredients">Ingredients: Cheese, Cherry, Cream</p>
+      <model-viewer src="William’s Birthday Cake.glb" alt="Special Cake AR" auto-rotate camera-controls ar></model-viewer>
       <div class="price">$20.00</div>
-  </div>
-
+    </div>
     <div class="card">
-      <img src="https://via.placeholder.com/150" alt="Falafel" />
+      <img src="https://via.placeholder.com/150" alt="Cup Cake" />
       <h4>Cup Cake</h4>
-      <p class="ingredients">Ingredients: Cheese, cherry, cream</p>
-      <model-viewer src="Cupcake.glb" alt="Falafel AR" auto-rotate camera-controls ar></model-viewer>
+      <p class="ingredients">Ingredients: Cheese, Cherry, Cream</p>
+      <model-viewer src="Cupcake.glb" alt="Cupcake AR" auto-rotate camera-controls ar></model-viewer>
       <div class="price">$2.00</div>
     </div>
   </div>
-  
+
+  <!-- Thai -->
   <div class="grid" id="thai">
     <div class="card">
       <img src="https://via.placeholder.com/150" alt="Green Curry" />
