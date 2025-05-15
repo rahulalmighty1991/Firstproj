@@ -28,8 +28,12 @@
       display: flex;
       gap: 10px;
       margin: 20px 0;
-      flex-wrap: wrap;
-      justify-content: center;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding-bottom: 10px;
+    }
+    .tabs::-webkit-scrollbar {
+      display: none;
     }
     .tab {
       padding: 10px 15px;
@@ -38,15 +42,28 @@
       cursor: pointer;
       font-size: 14px;
       color: #fff;
+      flex-shrink: 0;
     }
     .tab.active {
       background: rgb(37, 150, 190);
       color: #fff;
     }
+    .search-bar {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .search-bar input {
+      padding: 10px 15px;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
     .grid {
       display: none;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 30px; /* Increased spacing between cards */
+      gap: 30px;
     }
     .grid.active {
       display: grid;
@@ -127,6 +144,10 @@
     <div class="tab" data-target="thai">Thai Cuisine</div>
   </div>
 
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search for items...">
+  </div>
+
   <div class="grid active" id="burger">
     <div class="card">
       <h4>Zinger Burger</h4>
@@ -203,6 +224,7 @@
   <script>
     const tabs = document.querySelectorAll('.tab');
     const grids = document.querySelectorAll('.grid');
+    const searchInput = document.getElementById('searchInput');
 
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
@@ -214,6 +236,25 @@
           grid.classList.remove('active');
           if (grid.id === target) grid.classList.add('active');
         });
+
+        // Reset search input and show all cards
+        searchInput.value = '';
+        const newCards = document.querySelector(`#${target}`).querySelectorAll('.card');
+        newCards.forEach(card => card.style.display = 'block');
+      });
+    });
+
+    searchInput.addEventListener('input', function () {
+      const query = this.value.toLowerCase();
+      const activeGrid = document.querySelector('.grid.active');
+      const cards = activeGrid.querySelectorAll('.card');
+
+      cards.forEach(card => {
+        const title = card.querySelector('h4').textContent.toLowerCase();
+        const ingredients = card.querySelector('.ingredients').textContent.toLowerCase();
+        const price = card.querySelector('.price').textContent.toLowerCase();
+        const text = title + ingredients + price;
+        card.style.display = text.includes(query) ? 'block' : 'none';
       });
     });
   </script>
