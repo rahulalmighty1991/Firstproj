@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Islands Fine Burgers & Drinks Menu</title>
   <link rel="icon" type="image/png" href="logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -24,16 +24,20 @@
       margin: 0 auto 20px;
       max-width: 220px;
     }
-    .tabs-wrapper {
+
+    .tabs-container {
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
+      white-space: nowrap;
+      margin: 20px 0;
     }
+
     .tabs {
-      display: inline-flex;
+      display: flex;
       gap: 10px;
-      margin: 20px 0 10px;
-      padding: 0 10px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
+
     .tab {
       padding: 10px 15px;
       background: rgb(37, 150, 190);
@@ -44,20 +48,24 @@
       white-space: nowrap;
     }
     .tab.active {
-      background: rgb(25, 110, 140);
+      background: rgb(37, 150, 190);
+      color: #fff;
     }
-    .search-container {
+
+    .search-bar {
+      margin: 10px auto 30px;
       text-align: center;
-      margin: 10px 0 30px;
     }
-    .search-container input {
-      padding: 10px;
-      width: 80%;
+
+    .search-bar input {
+      width: 90%;
       max-width: 400px;
-      border: 1px solid #ccc;
-      border-radius: 20px;
+      padding: 10px 15px;
       font-size: 14px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
     }
+
     .grid {
       display: none;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -66,6 +74,7 @@
     .grid.active {
       display: grid;
     }
+
     .card {
       background: #fff;
       padding: 15px;
@@ -73,6 +82,7 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
       text-align: center;
     }
+
     .card h4 {
       margin: 10px 0 5px;
       font-size: 16px;
@@ -91,6 +101,11 @@
       margin: 10px 0;
       font-weight: bold;
     }
+    .price del {
+      color: #bbb;
+      font-weight: normal;
+      margin-right: 5px;
+    }
     .add-btn {
       padding: 8px 12px;
       background: #ff5a5f;
@@ -106,9 +121,7 @@
       height: 200px;
       margin-top: 10px;
     }
-    .highlight {
-      background-color: yellow;
-    }
+
     @media (max-width: 600px) {
       h1 {
         font-size: 24px;
@@ -117,11 +130,13 @@
         font-size: 12px;
         padding: 8px 12px;
       }
-      .card h4 {
-        font-size: 14px;
+      .tabs {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
       }
-      .card p, .ingredients, .price {
-        font-size: 12px;
+      .tabs::-webkit-scrollbar {
+        display: none;
       }
     }
   </style>
@@ -132,7 +147,7 @@
   <img src="logo.png" alt="Islands Logo" class="logo" />
   <h1>Islands Fine Burgers & Drinks</h1>
 
-  <div class="tabs-wrapper">
+  <div class="tabs-container">
     <div class="tabs" id="categoryTabs">
       <div class="tab active" data-target="burger">Burgers</div>
       <div class="tab" data-target="pizza">Pizza</div>
@@ -142,75 +157,75 @@
     </div>
   </div>
 
-  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search items..." />
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search for an item...">
   </div>
 
   <div class="grid active" id="burger">
     <div class="card">
-      <h4 data-title="Zinger Burger">Zinger Burger</h4>
-      <p class="ingredients" data-ingredients="Ingredients: Bread, Patti, Veggies">Ingredients: Bread, Patti, Veggies</p>
-      <model-viewer src="KFC, zinger burger photogrammetry.glb" auto-rotate camera-controls ar></model-viewer>
+      <h4>Zinger Burger</h4>
+      <p class="ingredients">Ingredients: Bread, Patti, Veggies</p>
+      <model-viewer src="KFC, zinger burger photogrammetry.glb" alt="Zinger Burger AR" auto-rotate camera-controls ar></model-viewer>
       <div class="price">$5.00</div>
     </div>
     <div class="card">
-      <h4 data-title="Classic Burger">Classic Burger</h4>
-      <p class="ingredients" data-ingredients="Ingredients: Bread, Patti, Veggies">Ingredients: Bread, Patti, Veggies</p>
-      <model-viewer src="KFC, zinger burger photogrammetry.glb" auto-rotate camera-controls ar></model-viewer>
+      <h4>Classic Burger</h4>
+      <p class="ingredients">Ingredients: Bread, Patti, Veggies</p>
+      <model-viewer src="KFC, zinger burger photogrammetry.glb" alt="Classic Burger AR" auto-rotate camera-controls ar></model-viewer>
       <div class="price">$5.00</div>
     </div>
     <div class="card">
-      <h4 data-title="Classic Cheese Burger">Classic Cheese Burger</h4>
-      <p class="ingredients" data-ingredients="Ingredients: Bread, Cheese, Patti, Veggies">Ingredients: Bread, Cheese, Patti, Veggies</p>
-      <model-viewer src="uploads_files_2465920_burger_merged.glb" auto-rotate camera-controls ar></model-viewer>
+      <h4>Classic Cheese Burger</h4>
+      <p class="ingredients">Ingredients: Bread, Cheese, Patti, Veggies</p>
+      <model-viewer src="uploads_files_2465920_burger_merged.glb" alt="Cheese Burger AR" auto-rotate camera-controls ar></model-viewer>
       <div class="price">$13.00</div>
     </div>
   </div>
 
   <div class="grid" id="pizza">
     <div class="card">
-      <h4 data-title="Peperoni Pizza">Peperoni Pizza</h4>
-      <p class="ingredients" data-ingredients="Ingredients: Peperoni, Cheese, Jalapeños">Ingredients: Peperoni, Cheese, Jalapeños</p>
-      <model-viewer src="Delicious Peperoni Pizza.glb" auto-rotate camera-controls ar></model-viewer>
+      <h4>Peperoni Pizza</h4>
+      <p class="ingredients">Ingredients: Peperoni, Cheese, Jalapeños</p>
+      <model-viewer src="Delicious Peperoni Pizza.glb" alt="Peperoni Pizza AR" auto-rotate camera-controls ar></model-viewer>
       <div class="price">$11.00</div>
     </div>
     <div class="card">
-      <h4 data-title="Cheese Pizza">Cheese Pizza</h4>
-      <p class="ingredients" data-ingredients="Ingredients: Cheese, Jalapeños">Ingredients: Cheese, Jalapeños</p>
-      <model-viewer src="Delicious Peperoni Pizza.glb" auto-rotate camera-controls ar></model-viewer>
+      <h4>Cheese Pizza</h4>
+      <p class="ingredients">Ingredients: Peperoni, Cheese, Jalapeños</p>
+      <model-viewer src="Delicious Peperoni Pizza.glb" alt="Cheese Pizza AR" auto-rotate camera-controls ar></model-viewer>
       <div class="price">$11.00</div>
     </div>
   </div>
 
   <div class="grid" id="japanese">
     <div class="card">
-      <h4 data-title="Box Combo">Box Combo</h4>
-      <p class="ingredients" data-ingredients="Ingredients: Noodles, Chicken, Egg, Broth, Rice">Ingredients: Noodles, Chicken, Egg, Broth, Rice</p>
-      <model-viewer src="Box Combo w_ extra sauce.glb" auto-rotate camera-controls ar></model-viewer>
+      <h4>Box Combo</h4>
+      <p class="ingredients">Ingredients: Noodles, Chicken, Egg, Broth, Rice</p>
+      <model-viewer src="Box Combo w_ extra sauce.glb" alt="Box Combo AR" auto-rotate camera-controls ar></model-viewer>
       <div class="price">$15.00</div>
     </div>
   </div>
 
   <div class="grid" id="bakery">
     <div class="card">
-      <h4 data-title="Special Cake">Special Cake</h4>
-      <p class="ingredients" data-ingredients="Ingredients: Cheese, Cherry, Cream">Ingredients: Cheese, Cherry, Cream</p>
-      <model-viewer src="William’s Birthday Cake.glb" auto-rotate camera-controls ar></model-viewer>
+      <h4>Special Cake</h4>
+      <p class="ingredients">Ingredients: Cheese, Cherry, Cream</p>
+      <model-viewer src="William’s Birthday Cake.glb" alt="Special Cake AR" auto-rotate camera-controls ar></model-viewer>
       <div class="price">$20.00</div>
     </div>
     <div class="card">
-      <h4 data-title="Cup Cake">Cup Cake</h4>
-      <p class="ingredients" data-ingredients="Ingredients: Cheese, Cherry, Cream">Ingredients: Cheese, Cherry, Cream</p>
-      <model-viewer src="Cupcake.glb" auto-rotate camera-controls ar></model-viewer>
+      <h4>Cup Cake</h4>
+      <p class="ingredients">Ingredients: Cheese, Cherry, Cream</p>
+      <model-viewer src="Cupcake.glb" alt="Cupcake AR" auto-rotate camera-controls ar></model-viewer>
       <div class="price">$2.00</div>
     </div>
   </div>
 
   <div class="grid" id="thai">
     <div class="card">
-      <h4 data-title="Green Curry">Green Curry</h4>
-      <p class="ingredients" data-ingredients="Ingredients: Coconut Milk, Green Curry Paste, Chicken">Ingredients: Coconut Milk, Green Curry Paste, Chicken</p>
-      <model-viewer src="models/greencurry.glb" auto-rotate camera-controls ar></model-viewer>
+      <h4>Green Curry</h4>
+      <p class="ingredients">Ingredients: Coconut Milk, Green Curry Paste, Chicken</p>
+      <model-viewer src="models/greencurry.glb" alt="Green Curry AR" auto-rotate camera-controls ar></model-viewer>
       <div class="price">$16.00</div>
     </div>
   </div>
@@ -232,51 +247,26 @@
         });
 
         searchInput.value = '';
-        resetCards();
+        filterItems('');
       });
     });
-
-    function highlightText(text, keyword) {
-      const regex = new RegExp(`(${keyword})`, 'gi');
-      return text.replace(regex, '<span class="highlight">$1</span>');
-    }
-
-    function resetCards() {
-      const activeCards = document.querySelectorAll('.grid.active .card');
-      activeCards.forEach(card => {
-        const titleEl = card.querySelector('h4');
-        const ingredientsEl = card.querySelector('.ingredients');
-        titleEl.innerHTML = titleEl.getAttribute('data-title');
-        ingredientsEl.innerHTML = ingredientsEl.getAttribute('data-ingredients');
-        card.style.display = '';
-      });
-    }
 
     searchInput.addEventListener('input', () => {
-      const keyword = searchInput.value.trim().toLowerCase();
-      const activeCards = document.querySelectorAll('.grid.active .card');
-
-      activeCards.forEach(card => {
-        const titleEl = card.querySelector('h4');
-        const ingredientsEl = card.querySelector('.ingredients');
-        const title = titleEl.getAttribute('data-title');
-        const ingredients = ingredientsEl.getAttribute('data-ingredients');
-        const combined = `${title} ${ingredients}`.toLowerCase();
-
-        if (!combined.includes(keyword)) {
-          card.style.display = 'none';
-        } else {
-          card.style.display = '';
-          if (keyword) {
-            titleEl.innerHTML = highlightText(title, keyword);
-            ingredientsEl.innerHTML = highlightText(ingredients, keyword);
-          } else {
-            titleEl.innerHTML = title;
-            ingredientsEl.innerHTML = ingredients;
-          }
-        }
-      });
+      filterItems(searchInput.value);
     });
+
+    function filterItems(query) {
+      const activeGrid = document.querySelector('.grid.active');
+      const cards = activeGrid.querySelectorAll('.card');
+      const lowerQuery = query.toLowerCase();
+
+      cards.forEach(card => {
+        const title = card.querySelector('h4').textContent.toLowerCase();
+        const ingredients = card.querySelector('.ingredients').textContent.toLowerCase();
+        const match = title.includes(lowerQuery) || ingredients.includes(lowerQuery);
+        card.style.display = match ? 'block' : 'none';
+      });
+    }
   </script>
 </body>
 </html>
