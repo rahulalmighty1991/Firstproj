@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -24,17 +24,20 @@
       margin: 0 auto 20px;
       max-width: 220px;
     }
+
+    .tabs-container {
+      overflow-x: auto;
+      white-space: nowrap;
+      margin: 20px 0;
+    }
+
     .tabs {
       display: flex;
       gap: 10px;
-      margin: 20px 0;
-      overflow-x: auto;
-      white-space: nowrap;
-      padding-bottom: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
-    .tabs::-webkit-scrollbar {
-      display: none;
-    }
+
     .tab {
       padding: 10px 15px;
       background: rgb(37, 150, 190);
@@ -42,24 +45,27 @@
       cursor: pointer;
       font-size: 14px;
       color: #fff;
-      flex-shrink: 0;
+      white-space: nowrap;
     }
     .tab.active {
       background: rgb(37, 150, 190);
       color: #fff;
     }
+
     .search-bar {
+      margin: 10px auto 30px;
       text-align: center;
-      margin-bottom: 20px;
     }
+
     .search-bar input {
-      padding: 10px 15px;
-      width: 80%;
+      width: 90%;
       max-width: 400px;
-      border-radius: 20px;
-      border: 1px solid #ccc;
+      padding: 10px 15px;
       font-size: 14px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
     }
+
     .grid {
       display: none;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -68,6 +74,7 @@
     .grid.active {
       display: grid;
     }
+
     .card {
       background: #fff;
       padding: 15px;
@@ -75,6 +82,7 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
       text-align: center;
     }
+
     .card h4 {
       margin: 10px 0 5px;
       font-size: 16px;
@@ -113,6 +121,7 @@
       height: 200px;
       margin-top: 10px;
     }
+
     @media (max-width: 600px) {
       h1 {
         font-size: 24px;
@@ -121,11 +130,13 @@
         font-size: 12px;
         padding: 8px 12px;
       }
-      .card h4 {
-        font-size: 14px;
+      .tabs {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
       }
-      .card p, .ingredients, .price {
-        font-size: 12px;
+      .tabs::-webkit-scrollbar {
+        display: none;
       }
     }
   </style>
@@ -136,16 +147,18 @@
   <img src="logo.png" alt="Islands Logo" class="logo" />
   <h1>Islands Fine Burgers & Drinks</h1>
 
-  <div class="tabs" id="categoryTabs">
-    <div class="tab active" data-target="burger">Burgers</div>
-    <div class="tab" data-target="pizza">Pizza</div>
-    <div class="tab" data-target="japanese">Japanese Cuisine</div>
-    <div class="tab" data-target="bakery">Bakery</div>
-    <div class="tab" data-target="thai">Thai Cuisine</div>
+  <div class="tabs-container">
+    <div class="tabs" id="categoryTabs">
+      <div class="tab active" data-target="burger">Burgers</div>
+      <div class="tab" data-target="pizza">Pizza</div>
+      <div class="tab" data-target="japanese">Japanese Cuisine</div>
+      <div class="tab" data-target="bakery">Bakery</div>
+      <div class="tab" data-target="thai">Thai Cuisine</div>
+    </div>
   </div>
 
   <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Search for items...">
+    <input type="text" id="searchInput" placeholder="Search for an item...">
   </div>
 
   <div class="grid active" id="burger">
@@ -155,14 +168,12 @@
       <model-viewer src="KFC, zinger burger photogrammetry.glb" alt="Zinger Burger AR" auto-rotate camera-controls ar></model-viewer>
       <div class="price">$5.00</div>
     </div>
-
     <div class="card">
       <h4>Classic Burger</h4>
       <p class="ingredients">Ingredients: Bread, Patti, Veggies</p>
       <model-viewer src="KFC, zinger burger photogrammetry.glb" alt="Classic Burger AR" auto-rotate camera-controls ar></model-viewer>
       <div class="price">$5.00</div>
     </div>
-
     <div class="card">
       <h4>Classic Cheese Burger</h4>
       <p class="ingredients">Ingredients: Bread, Cheese, Patti, Veggies</p>
@@ -178,7 +189,6 @@
       <model-viewer src="Delicious Peperoni Pizza.glb" alt="Peperoni Pizza AR" auto-rotate camera-controls ar></model-viewer>
       <div class="price">$11.00</div>
     </div>
-
     <div class="card">
       <h4>Cheese Pizza</h4>
       <p class="ingredients">Ingredients: Peperoni, Cheese, Jalapeños</p>
@@ -203,7 +213,6 @@
       <model-viewer src="William’s Birthday Cake.glb" alt="Special Cake AR" auto-rotate camera-controls ar></model-viewer>
       <div class="price">$20.00</div>
     </div>
-
     <div class="card">
       <h4>Cup Cake</h4>
       <p class="ingredients">Ingredients: Cheese, Cherry, Cream</p>
@@ -237,26 +246,27 @@
           if (grid.id === target) grid.classList.add('active');
         });
 
-        // Reset search input and show all cards
         searchInput.value = '';
-        const newCards = document.querySelector(`#${target}`).querySelectorAll('.card');
-        newCards.forEach(card => card.style.display = 'block');
+        filterItems('');
       });
     });
 
-    searchInput.addEventListener('input', function () {
-      const query = this.value.toLowerCase();
+    searchInput.addEventListener('input', () => {
+      filterItems(searchInput.value);
+    });
+
+    function filterItems(query) {
       const activeGrid = document.querySelector('.grid.active');
       const cards = activeGrid.querySelectorAll('.card');
+      const lowerQuery = query.toLowerCase();
 
       cards.forEach(card => {
         const title = card.querySelector('h4').textContent.toLowerCase();
         const ingredients = card.querySelector('.ingredients').textContent.toLowerCase();
-        const price = card.querySelector('.price').textContent.toLowerCase();
-        const text = title + ingredients + price;
-        card.style.display = text.includes(query) ? 'block' : 'none';
+        const match = title.includes(lowerQuery) || ingredients.includes(lowerQuery);
+        card.style.display = match ? 'block' : 'none';
       });
-    });
+    }
   </script>
 </body>
 </html>
