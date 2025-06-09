@@ -4,21 +4,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Islands Fine Burgers & Drinks Menu</title>
+  <title>AR Menu</title>
   <link rel="icon" type="image/png" href="logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      margin: 0;
+      background: #f5f5f5;
       padding: 20px;
-      background-color: #f5f5f5;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 10px;
-      font-size: 32px;
-      color: #333;
     }
     .logo {
       display: block;
@@ -27,39 +19,60 @@
     }
     .tabs-container {
       overflow-x: auto;
-      white-space: nowrap;
-      margin: 20px 0;
+      -webkit-overflow-scrolling: touch;
+      scroll-padding-left: 16px;
     }
     .tabs {
       display: flex;
+      flex-wrap: nowrap;
       gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
+      padding-left: 16px;
     }
     .tab {
       padding: 10px 15px;
-      background: rgb(37, 150, 190);
+      background: #2596be;
       border-radius: 20px;
+      color: white;
       cursor: pointer;
-      font-size: 14px;
-      color: #fff;
       white-space: nowrap;
     }
     .tab.active {
-      background: rgb(37, 150, 190);
-      color: #fff;
+      font-weight: bold;
+    }
+    .tabs::-webkit-scrollbar {
+      display: none;
     }
     .search-bar {
-      margin: 10px auto 30px;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
+      gap: 10px;
+      margin: 10px auto 10px;
     }
     .search-bar input {
-      width: 90%;
+      flex: 1;
       max-width: 400px;
       padding: 10px 15px;
       font-size: 14px;
       border-radius: 10px;
       border: 1px solid #ccc;
+    }
+    .ar-banner-steps {
+      text-align: center;
+      font-size: 15px;
+      background: #fff8e7;
+      border: 2px dashed #ffd88d;
+      color: #b85b00;
+      padding: 12px;
+      margin: 20px auto;
+      border-radius: 10px;
+      line-height: 1.8;
+    }
+    .icon-img {
+      height: 18px;
+      vertical-align: middle;
+      margin-right: 6px;
     }
     .grid {
       display: none;
@@ -76,291 +89,90 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
       text-align: center;
     }
-    .card h4 {
-      margin: 10px 0 5px;
-      font-size: 16px;
-    }
-    .card p {
-      margin: 0;
-      color: #888;
-      font-size: 14px;
-    }
-    .ingredients {
-      font-size: 12px;
-      margin: 5px 0;
-      color: #555;
-    }
-    .price {
-      margin: 10px 0;
-      font-weight: bold;
+    .ar-hint {
+      font-size: 13px;
+      color: #ff5a5f;
+      margin-top: 5px;
     }
     model-viewer {
       width: 100%;
       height: 200px;
-      margin-top: 10px;
     }
-    .ar-hint {
-      text-align: center;
-      font-size: 13px;
-      color: #ff5a5f;
-      animation: moveRight 1.5s infinite;
-      margin-top: 5px;
-    }
-    @keyframes moveRight {
-      0% { transform: translateX(0); opacity: 1; }
-      50% { transform: translateX(6px); opacity: 0.5; }
-      100% { transform: translateX(0); opacity: 1; }
-    }
-  
-    .ar-banner {
-      font-family: 'Inter', sans-serif;
-      font-size: 17px;
-      color: #d13f43;
-      background: #fff3f3;
-      border: 2px dashed #ffc6c6;
-      padding: 10px 20px;
-      border-radius: 12px;
-      display: inline-block;
-      max-width: 100%;
-      margin: 20px auto;
-    }
-
-    .cube-icon {
-      font-size: 22px;
-      animation: bounce 1.5s infinite;
-      display: inline-block;
-      transform-origin: center;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-
-
-      text-align: center;
-      font-size: 15px;
-      color: #ff5a5f;
-      font-weight: 600;
-      animation: blink 1.5s infinite;
-      margin-bottom: 20px;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.1; }
-    }
-    
-    .cube-svg-icon {
-      vertical-align: middle;
-      margin-right: 6px;
-      transform: translateY(-1px);
-    }
-    
-    .ar-banner-steps {
-      text-align: center;
-      font-size: 15px;
-      background: #fff8e7;
-      border: 2px dashed #ffd88d;
-      color: #b85b00;
-      padding: 12px;
-      margin: 20px auto;
-      border-radius: 10px;
-      line-height: 1.8;
-    }
-
-    .tabs {
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .tabs::-webkit-scrollbar {
-      display: none;
-    }
-
-    .search-bar {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: nowrap;
-      gap: 10px;
-      margin: 10px auto 10px;
-    }
-
-    .search-bar input {
-      flex: 1;
-      max-width: 400px;
-    }
-
-    .cube-svg-icon {
-      vertical-align: middle;
-      margin-right: 6px;
-      transform: translateY(-1px);
-    }
-    
-.tabs-container {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scroll-padding-left: 16px;
-}
-
-.tabs {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 10px;
-  padding-left: 16px;
-}
-
-.tabs::-webkit-scrollbar {
-  display: none;
-}
-
-</style>
+  </style>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
 
-  <img src="logo.png" alt="Islands Logo" class="logo" />
-  
+<img src="logo.png" alt="Logo" class="logo" />
 
-  <div class="tabs-container">
-    <div class="tabs" id="categoryTabs">
-      <div class="tab active" data-target="burger">Burgers</div>
-      <div class="tab" data-target="pizza">Pizza</div>
-      <div class="tab" data-target="japanese">Japanese Cuisine</div>
-      <div class="tab" data-target="bakery">Bakery</div>
-      <div class="tab" data-target="thai">Thai Cuisine</div>
-    </div>
+<div class="tabs-container">
+  <div class="tabs">
+    <div class="tab active" data-target="burger">Burgers</div>
+    <div class="tab" data-target="pizza">Pizza</div>
+    <div class="tab" data-target="japanese">Japanese Cuisine</div>
+    <div class="tab" data-target="bakery">Bakery</div>
+    <div class="tab" data-target="thai">Thai Cuisine</div>
   </div>
-
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Search for an item...">
-    <button onclick="document.getElementById('searchInput').value=''; filterItems('');">Clear</button>
-  
 </div>
 
-  <div class="ar-banner-steps">
-    <div>🧊 <strong>1.</strong> Tap the cube icon</div>
-    <div>📷 <strong>2.</strong> Allow camera access</div>
-    <div>🪄 <strong>3.</strong> Point your phone at a flat surface</div>
+<div class="search-bar">
+  <input type="text" id="searchInput" placeholder="Search for an item...">
+  <button onclick="document.getElementById('searchInput').value=''; filterItems('');">Clear</button>
+</div>
+
+<div class="ar-banner-steps">
+  <div><img src="cube-icon.png" alt="Cube Icon" class="icon-img" /> <strong>1.</strong> Tap the cube icon</div>
+  <div>📷 <strong>2.</strong> Allow camera access</div>
+  <div>🪄 <strong>3.</strong> Point your phone at a flat surface</div>
+</div>
+
+<div class="grid active" id="burger">
+  <div class="card">
+    <h4>Zinger Burger</h4>
+    <p class="ingredients">Bread, Patti, Veggies</p>
+    <model-viewer src="KFC, zinger burger photogrammetry.glb" auto-rotate camera-controls ar></model-viewer>
+    <p class="ar-hint">Tap the cube to view on your table 👆</p>
+    <div class="price">$5.00</div>
   </div>
+</div>
 
-  <div class="grid active" id="burger">
-    <div class="card">
-      <h4>Zinger Burger</h4>
-      <p class="ingredients">Ingredients: Bread, Patti, Veggies</p>
-      <model-viewer src="KFC, zinger burger photogrammetry.glb" auto-rotate camera-controls ar></model-viewer>
-      <p class="ar-hint">Tap the cube to view on your table 👆</p>
-      <div class="price">$5.00</div>
-    </div>
-    <div class="card">
-      <h4>Classic Burger</h4>
-      <p class="ingredients">Ingredients: Bread, Patti, Veggies</p>
-      <model-viewer src="KFC, zinger burger photogrammetry.glb" auto-rotate camera-controls ar></model-viewer>
-      <p class="ar-hint">Tap the cube to view on your table 👆</p>
-      <div class="price">$5.00</div>
-    </div>
-    <div class="card">
-      <h4>Classic Cheese Burger</h4>
-      <p class="ingredients">Ingredients: Bread, Cheese, Patti, Veggies</p>
-      <model-viewer src="uploads_files_2465920_burger_merged.glb" auto-rotate camera-controls ar></model-viewer>
-      <p class="ar-hint">Tap the cube to view on your table 👆</p>
-      <div class="price">$13.00</div>
-    </div>
-  </div>
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const grids = document.querySelectorAll('.grid');
+  const searchInput = document.getElementById('searchInput');
 
-  <div class="grid" id="pizza">
-    <div class="card">
-      <h4>Peperoni Pizza</h4>
-      <p class="ingredients">Ingredients: Peperoni, Cheese, Jalapeños</p>
-      <model-viewer src="Delicious Peperoni Pizza.glb" auto-rotate camera-controls ar></model-viewer>
-      <p class="ar-hint">Tap the cube to view on your table 👆</p>
-      <div class="price">$11.00</div>
-    </div>
-    <div class="card">
-      <h4>Cheese Pizza</h4>
-      <p class="ingredients">Ingredients: Cheese, Tomato, Herbs</p>
-      <model-viewer src="Delicious Peperoni Pizza.glb" auto-rotate camera-controls ar></model-viewer>
-      <p class="ar-hint">Tap the cube to view on your table 👆</p>
-      <div class="price">$11.00</div>
-    </div>
-  </div>
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
 
-  <div class="grid" id="japanese">
-    <div class="card">
-      <h4>Box Combo</h4>
-      <p class="ingredients">Ingredients: Noodles, Chicken, Egg, Broth, Rice</p>
-      <model-viewer src="Box Combo w_ extra sauce.glb" auto-rotate camera-controls ar></model-viewer>
-      <p class="ar-hint">Tap the cube to view on your table 👆</p>
-      <div class="price">$15.00</div>
-    </div>
-  </div>
-
-  <div class="grid" id="bakery">
-    <div class="card">
-      <h4>Special Cake</h4>
-      <p class="ingredients">Ingredients: Cheese, Cherry, Cream</p>
-      <model-viewer src="William’s Birthday Cake.glb" auto-rotate camera-controls ar></model-viewer>
-      <p class="ar-hint">Tap the cube to view on your table 👆</p>
-      <div class="price">$20.00</div>
-    </div>
-    <div class="card">
-      <h4>Cup Cake</h4>
-      <p class="ingredients">Ingredients: Vanilla, Cream, Sprinkles</p>
-      <model-viewer src="Cupcake.glb" auto-rotate camera-controls ar></model-viewer>
-      <p class="ar-hint">Tap the cube to view on your table 👆</p>
-      <div class="price">$2.00</div>
-    </div>
-  </div>
-
-  <div class="grid" id="thai">
-    <div class="card">
-      <h4>Green Curry</h4>
-      <p class="ingredients">Ingredients: Coconut Milk, Green Curry Paste, Chicken</p>
-      <model-viewer src="models/greencurry.glb" auto-rotate camera-controls ar></model-viewer>
-      <p class="ar-hint">Tap the cube to view on your table 👆</p>
-      <div class="price">$16.00</div>
-    </div>
-  </div>
-
-  <script>
-    const tabs = document.querySelectorAll('.tab');
-    const grids = document.querySelectorAll('.grid');
-    const searchInput = document.getElementById('searchInput');
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-
-        const target = tab.getAttribute('data-target');
-        grids.forEach(grid => {
-          grid.classList.remove('active');
-          if (grid.id === target) grid.classList.add('active');
-        });
-
-        searchInput.value = '';
-        filterItems('');
+      const target = tab.getAttribute('data-target');
+      grids.forEach(grid => {
+        grid.classList.remove('active');
+        if (grid.id === target) grid.classList.add('active');
       });
+
+      searchInput.value = '';
+      filterItems('');
     });
+  });
 
-    searchInput.addEventListener('input', () => {
-      filterItems(searchInput.value);
+  searchInput.addEventListener('input', () => {
+    filterItems(searchInput.value);
+  });
+
+  function filterItems(query) {
+    const activeGrid = document.querySelector('.grid.active');
+    const cards = activeGrid.querySelectorAll('.card');
+    const lowerQuery = query.toLowerCase();
+
+    cards.forEach(card => {
+      const title = card.querySelector('h4').textContent.toLowerCase();
+      const ingredients = card.querySelector('.ingredients').textContent.toLowerCase();
+      const match = title.includes(lowerQuery) || ingredients.includes(lowerQuery);
+      card.style.display = match ? 'block' : 'none';
     });
-
-    function filterItems(query) {
-      const activeGrid = document.querySelector('.grid.active');
-      const cards = activeGrid.querySelectorAll('.card');
-      const lowerQuery = query.toLowerCase();
-
-      cards.forEach(card => {
-        const title = card.querySelector('h4').textContent.toLowerCase();
-        const ingredients = card.querySelector('.ingredients').textContent.toLowerCase();
-        const match = title.includes(lowerQuery) || ingredients.includes(lowerQuery);
-        card.style.display = match ? 'block' : 'none';
-      });
-    }
-  </script>
+  }
+</script>
 </body>
 </html>
