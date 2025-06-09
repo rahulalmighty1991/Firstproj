@@ -156,6 +156,48 @@
       margin-right: 6px;
       transform: translateY(-1px);
     }
+    
+    .ar-banner-steps {
+      text-align: center;
+      font-size: 15px;
+      background: #fff8e7;
+      border: 2px dashed #ffd88d;
+      color: #b85b00;
+      padding: 12px;
+      margin: 20px auto;
+      border-radius: 10px;
+      line-height: 1.8;
+    }
+
+    .tabs {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
+      gap: 10px;
+      margin: 10px auto 10px;
+    }
+
+    .search-bar input {
+      flex: 1;
+      max-width: 400px;
+    }
+
+    .cube-svg-icon {
+      vertical-align: middle;
+      margin-right: 6px;
+      transform: translateY(-1px);
+    }
     </style>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
@@ -179,26 +221,18 @@
     <button onclick="document.getElementById('searchInput').value=''; filterItems('');">Clear</button>
   
   
-  <div class="ar-banner">
-    ✨ 
-<svg class="cube-svg-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d13f43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73z"></path>
-  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-  <line x1="12" y1="22.08" x2="12" y2="12"></line>
-</svg>
- Tap the cube to see the magic on your table! ✨
+  <div class="ar-banner-steps">
+    <div>🧊 <strong>1.</strong> Tap the cube icon</div>
+    <div>📷 <strong>2.</strong> Allow camera access</div>
+    <div>🪄 <strong>3.</strong> Point your phone at a flat surface</div>
   </div>
 
 </div>
 
-  <div class="ar-banner">
-    ✨ 
-<svg class="cube-svg-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d13f43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73z"></path>
-  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-  <line x1="12" y1="22.08" x2="12" y2="12"></line>
-</svg>
- Tap the cube to see the magic on your table! ✨
+  <div class="ar-banner-steps">
+    <div>🧊 <strong>1.</strong> Tap the cube icon</div>
+    <div>📷 <strong>2.</strong> Allow camera access</div>
+    <div>🪄 <strong>3.</strong> Point your phone at a flat surface</div>
   </div>
 
   <div class="grid active" id="burger">
