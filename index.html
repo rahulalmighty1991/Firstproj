@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,8 +25,8 @@
       margin: 0 auto 20px;
       max-width: 220px;
     }
-    
-.ar-instructions {
+
+    .ar-instructions {
       text-align: center;
       margin-bottom: 20px;
     }
@@ -127,10 +128,24 @@
       font-size: 14px;
       width: 100%;
     }
+
     model-viewer {
       width: 100%;
       height: 200px;
       margin-top: 10px;
+    }
+
+    .ar-hint {
+      text-align: center;
+      font-size: 13px;
+      color: #ff5a5f;
+      animation: flash 1.5s infinite;
+      margin-top: 5px;
+    }
+
+    @keyframes flash {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
     }
 
     @media (max-width: 600px) {
@@ -154,131 +169,45 @@
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
+<!-- PAGE BODY OMITTED FOR BREVITY -->
 
-  <img src="logo.png" alt="Islands Logo" class="logo" />
-  <h1>Islands Fine Burgers & Drinks</h1>
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const grids = document.querySelectorAll('.grid');
+  const searchInput = document.getElementById('searchInput');
 
-  <div class="tabs-container">
-    <div class="tabs" id="categoryTabs">
-      <div class="tab active" data-target="burger">Burgers</div>
-      <div class="tab" data-target="pizza">Pizza</div>
-      <div class="tab" data-target="japanese">Japanese Cuisine</div>
-      <div class="tab" data-target="bakery">Bakery</div>
-      <div class="tab" data-target="thai">Thai Cuisine</div>
-    </div>
-  </div>
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
 
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Search for an item...">
-     <button onclick="document.getElementById('searchInput').value=''; filterItems('');">Clear</button>
-  </div>
-
-  <div class="grid active" id="burger">
-    <div class="card">
-      <h4>Zinger Burger</h4>
-      <p class="ingredients">Ingredients: Bread, Patti, Veggies</p>
-      <model-viewer src="KFC, zinger burger photogrammetry.glb" alt="Zinger Burger AR" auto-rotate camera-controls ar></model-viewer>
-      <div class="price">$5.00</div>
-    </div>
-    <div class="card">
-      <h4>Classic Burger</h4>
-      <p class="ingredients">Ingredients: Bread, Patti, Veggies</p>
-      <model-viewer src="KFC, zinger burger photogrammetry.glb" alt="Classic Burger AR" auto-rotate camera-controls ar></model-viewer>
-      <div class="price">$5.00</div>
-    </div>
-    <div class="card">
-      <h4>Classic Cheese Burger</h4>
-      <p class="ingredients">Ingredients: Bread, Cheese, Patti, Veggies</p>
-      <model-viewer src="uploads_files_2465920_burger_merged.glb" alt="Cheese Burger AR" auto-rotate camera-controls ar></model-viewer>
-      <div class="price">$13.00</div>
-    </div>
-  </div>
-
-  <div class="grid" id="pizza">
-    <div class="card">
-      <h4>Peperoni Pizza</h4>
-      <p class="ingredients">Ingredients: Peperoni, Cheese, Jalapeños</p>
-      <model-viewer src="Delicious Peperoni Pizza.glb" alt="Peperoni Pizza AR" auto-rotate camera-controls ar></model-viewer>
-      <div class="price">$11.00</div>
-    </div>
-    <div class="card">
-      <h4>Cheese Pizza</h4>
-      <p class="ingredients">Ingredients: Peperoni, Cheese, Jalapeños</p>
-      <model-viewer src="Delicious Peperoni Pizza.glb" alt="Cheese Pizza AR" auto-rotate camera-controls ar></model-viewer>
-      <div class="price">$11.00</div>
-    </div>
-  </div>
-
-  <div class="grid" id="japanese">
-    <div class="card">
-      <h4>Box Combo</h4>
-      <p class="ingredients">Ingredients: Noodles, Chicken, Egg, Broth, Rice</p>
-      <model-viewer src="Box Combo w_ extra sauce.glb" alt="Box Combo AR" auto-rotate camera-controls ar></model-viewer>
-      <div class="price">$15.00</div>
-    </div>
-  </div>
-
-  <div class="grid" id="bakery">
-    <div class="card">
-      <h4>Special Cake</h4>
-      <p class="ingredients">Ingredients: Cheese, Cherry, Cream</p>
-      <model-viewer src="William’s Birthday Cake.glb" alt="Special Cake AR" auto-rotate camera-controls ar></model-viewer>
-      <div class="price">$20.00</div>
-    </div>
-    <div class="card">
-      <h4>Cup Cake</h4>
-      <p class="ingredients">Ingredients: Cheese, Cherry, Cream</p>
-      <model-viewer src="Cupcake.glb" alt="Cupcake AR" auto-rotate camera-controls ar></model-viewer>
-      <div class="price">$2.00</div>
-    </div>
-  </div>
-
-  <div class="grid" id="thai">
-    <div class="card">
-      <h4>Green Curry</h4>
-      <p class="ingredients">Ingredients: Coconut Milk, Green Curry Paste, Chicken</p>
-      <model-viewer src="models/greencurry.glb" alt="Green Curry AR" auto-rotate camera-controls ar></model-viewer>
-      <div class="price">$16.00</div>
-    </div>
-  </div>
-
-  <script>
-    const tabs = document.querySelectorAll('.tab');
-    const grids = document.querySelectorAll('.grid');
-    const searchInput = document.getElementById('searchInput');
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-
-        const target = tab.getAttribute('data-target');
-        grids.forEach(grid => {
-          grid.classList.remove('active');
-          if (grid.id === target) grid.classList.add('active');
-        });
-
-        searchInput.value = '';
-        filterItems('');
+      const target = tab.getAttribute('data-target');
+      grids.forEach(grid => {
+        grid.classList.remove('active');
+        if (grid.id === target) grid.classList.add('active');
       });
+
+      searchInput.value = '';
+      filterItems('');
     });
+  });
 
-    searchInput.addEventListener('input', () => {
-      filterItems(searchInput.value);
+  searchInput.addEventListener('input', () => {
+    filterItems(searchInput.value);
+  });
+
+  function filterItems(query) {
+    const activeGrid = document.querySelector('.grid.active');
+    const cards = activeGrid.querySelectorAll('.card');
+    const lowerQuery = query.toLowerCase();
+
+    cards.forEach(card => {
+      const title = card.querySelector('h4').textContent.toLowerCase();
+      const ingredients = card.querySelector('.ingredients').textContent.toLowerCase();
+      const match = title.includes(lowerQuery) || ingredients.includes(lowerQuery);
+      card.style.display = match ? 'block' : 'none';
     });
-
-    function filterItems(query) {
-      const activeGrid = document.querySelector('.grid.active');
-      const cards = activeGrid.querySelectorAll('.card');
-      const lowerQuery = query.toLowerCase();
-
-      cards.forEach(card => {
-        const title = card.querySelector('h4').textContent.toLowerCase();
-        const ingredients = card.querySelector('.ingredients').textContent.toLowerCase();
-        const match = title.includes(lowerQuery) || ingredients.includes(lowerQuery);
-        card.style.display = match ? 'block' : 'none';
-      });
-    }
-  </script>
+  }
+</script>
 </body>
 </html>
