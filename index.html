@@ -111,13 +111,27 @@
       50% { transform: translateX(6px); opacity: 0.5; }
       100% { transform: translateX(0); opacity: 1; }
     }
-  </style>
+  
+    .ar-banner {
+      text-align: center;
+      font-size: 15px;
+      color: #ff5a5f;
+      font-weight: 600;
+      animation: blink 1.5s infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.1; }
+    }
+    </style>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
 
   <img src="logo.png" alt="Islands Logo" class="logo" />
-  <h1>Islands Fine Burgers & Drinks</h1>
+  
 
   <div class="tabs-container">
     <div class="tabs" id="categoryTabs">
@@ -132,28 +146,30 @@
   <div class="search-bar">
     <input type="text" id="searchInput" placeholder="Search for an item...">
     <button onclick="document.getElementById('searchInput').value=''; filterItems('');">Clear</button>
-  </div>
+  
+  <div class="ar-banner">✨ Click the cube icon to see the magic on your table! ✨</div>
+</div>
 
   <div class="grid active" id="burger">
     <div class="card">
       <h4>Zinger Burger</h4>
       <p class="ingredients">Ingredients: Bread, Patti, Veggies</p>
       <model-viewer src="KFC, zinger burger photogrammetry.glb" auto-rotate camera-controls ar></model-viewer>
-      <p class="ar-hint">👉 Tap the cube to view on your table</p>
+      <p class="ar-hint">Tap the cube to view on your table 👆</p>
       <div class="price">$5.00</div>
     </div>
     <div class="card">
       <h4>Classic Burger</h4>
       <p class="ingredients">Ingredients: Bread, Patti, Veggies</p>
       <model-viewer src="KFC, zinger burger photogrammetry.glb" auto-rotate camera-controls ar></model-viewer>
-      <p class="ar-hint">👉 Tap the cube to view on your table</p>
+      <p class="ar-hint">Tap the cube to view on your table 👆</p>
       <div class="price">$5.00</div>
     </div>
     <div class="card">
       <h4>Classic Cheese Burger</h4>
       <p class="ingredients">Ingredients: Bread, Cheese, Patti, Veggies</p>
       <model-viewer src="uploads_files_2465920_burger_merged.glb" auto-rotate camera-controls ar></model-viewer>
-      <p class="ar-hint">👉 Tap the cube to view on your table</p>
+      <p class="ar-hint">Tap the cube to view on your table 👆</p>
       <div class="price">$13.00</div>
     </div>
   </div>
@@ -163,14 +179,14 @@
       <h4>Peperoni Pizza</h4>
       <p class="ingredients">Ingredients: Peperoni, Cheese, Jalapeños</p>
       <model-viewer src="Delicious Peperoni Pizza.glb" auto-rotate camera-controls ar></model-viewer>
-      <p class="ar-hint">👉 Tap the cube to view on your table</p>
+      <p class="ar-hint">Tap the cube to view on your table 👆</p>
       <div class="price">$11.00</div>
     </div>
     <div class="card">
       <h4>Cheese Pizza</h4>
       <p class="ingredients">Ingredients: Cheese, Tomato, Herbs</p>
       <model-viewer src="Delicious Peperoni Pizza.glb" auto-rotate camera-controls ar></model-viewer>
-      <p class="ar-hint">👉 Tap the cube to view on your table</p>
+      <p class="ar-hint">Tap the cube to view on your table 👆</p>
       <div class="price">$11.00</div>
     </div>
   </div>
@@ -180,7 +196,7 @@
       <h4>Box Combo</h4>
       <p class="ingredients">Ingredients: Noodles, Chicken, Egg, Broth, Rice</p>
       <model-viewer src="Box Combo w_ extra sauce.glb" auto-rotate camera-controls ar></model-viewer>
-      <p class="ar-hint">👉 Tap the cube to view on your table</p>
+      <p class="ar-hint">Tap the cube to view on your table 👆</p>
       <div class="price">$15.00</div>
     </div>
   </div>
@@ -190,14 +206,14 @@
       <h4>Special Cake</h4>
       <p class="ingredients">Ingredients: Cheese, Cherry, Cream</p>
       <model-viewer src="William’s Birthday Cake.glb" auto-rotate camera-controls ar></model-viewer>
-      <p class="ar-hint">👉 Tap the cube to view on your table</p>
+      <p class="ar-hint">Tap the cube to view on your table 👆</p>
       <div class="price">$20.00</div>
     </div>
     <div class="card">
       <h4>Cup Cake</h4>
       <p class="ingredients">Ingredients: Vanilla, Cream, Sprinkles</p>
       <model-viewer src="Cupcake.glb" auto-rotate camera-controls ar></model-viewer>
-      <p class="ar-hint">👉 Tap the cube to view on your table</p>
+      <p class="ar-hint">Tap the cube to view on your table 👆</p>
       <div class="price">$2.00</div>
     </div>
   </div>
@@ -207,7 +223,7 @@
       <h4>Green Curry</h4>
       <p class="ingredients">Ingredients: Coconut Milk, Green Curry Paste, Chicken</p>
       <model-viewer src="models/greencurry.glb" auto-rotate camera-controls ar></model-viewer>
-      <p class="ar-hint">👉 Tap the cube to view on your table</p>
+      <p class="ar-hint">Tap the cube to view on your table 👆</p>
       <div class="price">$16.00</div>
     </div>
   </div>
