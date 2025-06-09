@@ -113,6 +113,31 @@
     }
   
     .ar-banner {
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      color: #d13f43;
+      background: #fff3f3;
+      border: 2px dashed #ffc6c6;
+      padding: 10px 20px;
+      border-radius: 12px;
+      display: inline-block;
+      max-width: 100%;
+      margin: 20px auto;
+    }
+
+    .cube-icon {
+      font-size: 22px;
+      animation: bounce 1.5s infinite;
+      display: inline-block;
+      transform-origin: center;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+
       text-align: center;
       font-size: 15px;
       color: #ff5a5f;
@@ -147,7 +172,11 @@
     <input type="text" id="searchInput" placeholder="Search for an item...">
     <button onclick="document.getElementById('searchInput').value=''; filterItems('');">Clear</button>
   
-  <div class="ar-banner">✨ Click the cube icon to see the magic on your table! ✨</div>
+  
+  <div class="ar-banner">
+    ✨ <span class="cube-icon">🧊</span> Tap the cube to see the magic on your table! ✨
+  </div>
+
 </div>
 
   <div class="grid active" id="burger">
