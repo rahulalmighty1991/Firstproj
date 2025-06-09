@@ -1,13 +1,14 @@
 
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Islands Fine Burgers & Drinks Menu</title>
-  <link rel="icon" type="image/png" href="logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Islands Fine Burgers &amp; Drinks Menu</title>
+<link href="logo.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<style>
     body {
       font-family: 'Inter', sans-serif;
       margin: 0;
@@ -199,40 +200,143 @@
       transform: translateY(-1px);
     }
     
-    .icon-img {
-      height: 20px;
-      vertical-align: middle;
-      margin-right: 6px;
+    .tabs {
+      padding-left: 16px;
     }
     </style>
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module"></script>
 </head>
 <body>
+<img alt="Islands Logo" class="logo" src="logo.png"/>
+<div class="tabs-container">
+<div class="tabs" id="categoryTabs">
+<div class="tab active" data-target="burger">Burgers</div>
+<div class="tab" data-target="pizza">Pizza</div>
+<div class="tab" data-target="japanese">Japanese Cuisine</div>
+<div class="tab" data-target="bakery">Bakery</div>
+<div class="tab" data-target="thai">Thai Cuisine</div>
+</div>
+</div>
+<div class="search-bar">
+<input id="searchInput" placeholder="Search for an item..." type="text"/>
+<button onclick="document.getElementById('searchInput').value=''; filterItems('');">Clear</button>
 
-  <img src="logo.png" alt="Islands Logo" class="logo" />
-  
-
-  <div class="tabs-container">
-    <div class="tabs" id="categoryTabs">
-      <div class="tab active" data-target="burger">Burgers</div>
-      <div class="tab" data-target="pizza">Pizza</div>
-      <div class="tab" data-target="japanese">Japanese Cuisine</div>
-      <div class="tab" data-target="bakery">Bakery</div>
-      <div class="tab" data-target="thai">Thai Cuisine</div>
-    </div>
-  </div>
-
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Search for an item...">
-    <button onclick="document.getElementById('searchInput').value=''; filterItems('');">Clear</button>
-  
-  
-  <div class="ar-banner-steps">
-    <div><img src="cube-icon.png" alt="AR Cube" class="icon-img" /> <strong>1.</strong> Tap the cube icon</div>
-    <div>📷 <strong>2.</strong> Allow camera access</div>
-    <div>🪄 <strong>3.</strong> Point your phone at a flat surface</div>
-  </div>
-
+</div><div class="ar-banner-steps">
+<div>🧊 <strong>1.</strong> Tap the cube icon</div>
+<div>📷 <strong>2.</strong> Allow camera access</div>
+<div>🪄 <strong>3.</strong> Point your phone at a flat surface</div>
 </div>
 
-  
+<div class="grid active" id="burger">
+<div class="card">
+<h4>Zinger Burger</h4>
+<p class="ingredients">Ingredients: Bread, Patti, Veggies</p>
+<model-viewer ar="" auto-rotate="" camera-controls="" src="KFC, zinger burger photogrammetry.glb"></model-viewer>
+<p class="ar-hint">Tap the cube to view on your table 👆</p>
+<div class="price">$5.00</div>
+</div>
+<div class="card">
+<h4>Classic Burger</h4>
+<p class="ingredients">Ingredients: Bread, Patti, Veggies</p>
+<model-viewer ar="" auto-rotate="" camera-controls="" src="KFC, zinger burger photogrammetry.glb"></model-viewer>
+<p class="ar-hint">Tap the cube to view on your table 👆</p>
+<div class="price">$5.00</div>
+</div>
+<div class="card">
+<h4>Classic Cheese Burger</h4>
+<p class="ingredients">Ingredients: Bread, Cheese, Patti, Veggies</p>
+<model-viewer ar="" auto-rotate="" camera-controls="" src="uploads_files_2465920_burger_merged.glb"></model-viewer>
+<p class="ar-hint">Tap the cube to view on your table 👆</p>
+<div class="price">$13.00</div>
+</div>
+</div>
+<div class="grid" id="pizza">
+<div class="card">
+<h4>Peperoni Pizza</h4>
+<p class="ingredients">Ingredients: Peperoni, Cheese, Jalapeños</p>
+<model-viewer ar="" auto-rotate="" camera-controls="" src="Delicious Peperoni Pizza.glb"></model-viewer>
+<p class="ar-hint">Tap the cube to view on your table 👆</p>
+<div class="price">$11.00</div>
+</div>
+<div class="card">
+<h4>Cheese Pizza</h4>
+<p class="ingredients">Ingredients: Cheese, Tomato, Herbs</p>
+<model-viewer ar="" auto-rotate="" camera-controls="" src="Delicious Peperoni Pizza.glb"></model-viewer>
+<p class="ar-hint">Tap the cube to view on your table 👆</p>
+<div class="price">$11.00</div>
+</div>
+</div>
+<div class="grid" id="japanese">
+<div class="card">
+<h4>Box Combo</h4>
+<p class="ingredients">Ingredients: Noodles, Chicken, Egg, Broth, Rice</p>
+<model-viewer ar="" auto-rotate="" camera-controls="" src="Box Combo w_ extra sauce.glb"></model-viewer>
+<p class="ar-hint">Tap the cube to view on your table 👆</p>
+<div class="price">$15.00</div>
+</div>
+</div>
+<div class="grid" id="bakery">
+<div class="card">
+<h4>Special Cake</h4>
+<p class="ingredients">Ingredients: Cheese, Cherry, Cream</p>
+<model-viewer ar="" auto-rotate="" camera-controls="" src="William’s Birthday Cake.glb"></model-viewer>
+<p class="ar-hint">Tap the cube to view on your table 👆</p>
+<div class="price">$20.00</div>
+</div>
+<div class="card">
+<h4>Cup Cake</h4>
+<p class="ingredients">Ingredients: Vanilla, Cream, Sprinkles</p>
+<model-viewer ar="" auto-rotate="" camera-controls="" src="Cupcake.glb"></model-viewer>
+<p class="ar-hint">Tap the cube to view on your table 👆</p>
+<div class="price">$2.00</div>
+</div>
+</div>
+<div class="grid" id="thai">
+<div class="card">
+<h4>Green Curry</h4>
+<p class="ingredients">Ingredients: Coconut Milk, Green Curry Paste, Chicken</p>
+<model-viewer ar="" auto-rotate="" camera-controls="" src="models/greencurry.glb"></model-viewer>
+<p class="ar-hint">Tap the cube to view on your table 👆</p>
+<div class="price">$16.00</div>
+</div>
+</div>
+<script>
+    const tabs = document.querySelectorAll('.tab');
+    const grids = document.querySelectorAll('.grid');
+    const searchInput = document.getElementById('searchInput');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const target = tab.getAttribute('data-target');
+        grids.forEach(grid => {
+          grid.classList.remove('active');
+          if (grid.id === target) grid.classList.add('active');
+        });
+
+        searchInput.value = '';
+        filterItems('');
+      });
+    });
+
+    searchInput.addEventListener('input', () => {
+      filterItems(searchInput.value);
+    });
+
+    function filterItems(query) {
+      const activeGrid = document.querySelector('.grid.active');
+      const cards = activeGrid.querySelectorAll('.card');
+      const lowerQuery = query.toLowerCase();
+
+      cards.forEach(card => {
+        const title = card.querySelector('h4').textContent.toLowerCase();
+        const ingredients = card.querySelector('.ingredients').textContent.toLowerCase();
+        const match = title.includes(lowerQuery) || ingredients.includes(lowerQuery);
+        card.style.display = match ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
