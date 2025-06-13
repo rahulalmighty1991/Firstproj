@@ -4,18 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AR Menu</title>
+  <title>SurfMenu - AR Menu</title>
   <link rel="icon" type="image/png" href="logo.png" />
   <style>
     body {
+      font-family: 'Inter', sans-serif;
+      background: #fdf6ed;
       margin: 0;
-      padding: 0;
-      background: #fcfcfc;
-      font-family: 'Inter', sans-serif;
-    
-      font-family: 'Inter', sans-serif;
-      background: #f5f5f5;
-      padding: 20px;
+      color: #333;
     }
     .logo {
       display: block;
@@ -23,61 +19,48 @@
       max-width: 220px;
     }
     .tabs-container {
+      overflow-x: auto;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
       position: sticky;
       top: 0;
-      background: #f5f5f5;
-      z-index: 10;
-      padding: 10px 0;
-    
-      overflow-x: auto;
-      scroll-padding-left: 16px;
-      -webkit-overflow-scrolling: touch;
+      z-index: 1000;
     }
     .tabs {
       display: flex;
-      flex-wrap: nowrap;
       gap: 10px;
-      padding-left: 16px;
-      scroll-snap-type: x mandatory;
+      padding: 10px 16px;
     }
     .tab {
-      transition: background 0.3s ease;
-      min-width: 100px;
-    
-      padding: 10px 15px;
-      background: #2596be;
+      padding: 10px 16px;
+      background: #ff6b6b;
+      color: #fff;
       border-radius: 20px;
-      color: white;
-      cursor: pointer;
       white-space: nowrap;
-      scroll-snap-align: start;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
     .tab.active {
+      background: #d94d4d;
       font-weight: bold;
     }
-    .tabs::-webkit-scrollbar {
-      display: none;
-    }
     .search-bar {
-      padding: 0 10px;
-    
       display: flex;
       justify-content: center;
       align-items: center;
       flex-wrap: nowrap;
       gap: 10px;
-      margin: 10px auto 10px;
+      margin: 10px auto;
+      padding: 0 10px;
     }
     .search-bar input {
-      border: none;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    
       flex: 1;
       max-width: 400px;
       padding: 10px 15px;
       font-size: 14px;
       border-radius: 10px;
-      border: 1px solid #ccc;
+      border: none;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
     }
     .ar-banner-steps {
       text-align: center;
@@ -95,45 +78,67 @@
       vertical-align: middle;
       margin-right: 6px;
     }
+    .section-title {
+      text-align: center;
+      font-size: 1.5em;
+      margin: 20px 0 10px;
+    }
     .grid {
       display: none;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      padding: 0 16px 40px;
     }
     .grid.active {
       display: grid;
     }
     .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
       transition: transform 0.2s ease;
     }
     .card:hover {
-      transform: scale(1.03);
-    
-      background: #fff;
-      padding: 15px;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      text-align: center;
+      transform: scale(1.02);
     }
-    .ar-hint {
-      font-size: 13px;
-      color: #ff5a5f;
-      margin-top: 5px;
+    .card h4 {
+      margin: 16px;
+      font-size: 1.2em;
+      color: #222;
+      text-align: left;
+    }
+    .ingredients {
+      font-size: 0.9em;
+      margin: 0 16px 10px;
+      color: #555;
+      text-align: left;
     }
     model-viewer {
       width: 100%;
       height: 200px;
+      background: #f0f0f0;
     }
-
-    @media (min-width: 768px) {
-      .tabs {
-        justify-content: center;
-      }
+    .price {
+      font-size: 1em;
+      font-weight: bold;
+      margin: 10px 16px;
+      color: #ff6b6b;
+      text-align: left;
+    }
+    .ar-hint {
+      font-size: 0.8em;
+      margin: 0 16px 16px;
+      color: #ff5a5f;
+      text-align: left;
     }
   </style>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
+
 
 <img src="logo.png" alt="Logo" class="logo" />
 
